@@ -22,8 +22,9 @@ turn = 0
 while True:
     y = int(input('Enter number: '))
     turn += 1
-    if 1 > y > 100:
+    if y < 1 or y > 100:
         print('OUT OF BOUNDS')
+        prev = 0
     elif y == x:
         print('CORRECT! Number of guesses: ', turn)
         break
@@ -33,9 +34,9 @@ while True:
     elif turn == 1 and abs(x - y) > 10:
         print('COLD!')
         prev = y
-    elif turn > 1 and y < prev:
+    elif turn > 1 and abs(x - y) < abs(x - prev):
         print('WARMER!')
         prev = y
-    elif turn > 1 and y > prev:
+    elif turn > 1 and abs(x - y) > abs(x - prev):
         print('COLDER!')
         prev = y
